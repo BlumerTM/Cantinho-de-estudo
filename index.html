@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Interpretação dos Sonhos - Freud</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            color: #2d3748;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .secao-inicial {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .secao-inicial::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: flutuar 6s ease-in-out infinite;
+            top: 10%;
+            left: 10%;
+        }
+        
+        .secao-inicial::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: flutuar 8s ease-in-out infinite;
+            bottom: 15%;
+            right: 15%;
+        }
+        
+        @keyframes flutuar {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+        
+        .secao-inicial h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: surgirDeBaixo 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .secao-inicial .subtitulo {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1rem;
+            animation: surgirDeBaixo 1s ease-out 0.2s backwards;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .secao-inicial .autor {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 300;
+            animation: surgirDeBaixo 1s ease-out 0.4s backwards;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .indicador-rolagem {
+            position: absolute;
+            bottom: 30px;
+            animation: pular 2s infinite;
+            z-index: 1;
+        }
+        
+        .indicador-rolagem svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            opacity: 0.7;
+        }
+        
+        @keyframes pular {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        @keyframes surgirDeBaixo {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .conteiner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .secao {
+            margin-bottom: 3rem;
+            animation: surgirDeBaixo 0.8s ease-out;
+        }
+        
+        .titulo-principal {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #f093fb;
+            position: relative;
+        }
+        
+        .titulo-secundario {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            color: #764ba2;
+            margin: 2rem 0 1rem;
+        }
+        
+        .titulo-terciario {
+            font-size: 1.2rem;
+            color: #667eea;
+            margin: 1.5rem 0 0.8rem;
+            font-weight: 600;
+        }
+        
+        .paragrafo {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+        
+        .cartao-conceito {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 5px solid #667eea;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cartao-conceito:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .numero-conceito {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .caixa-destaque {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .caixa-exemplo {
+            background: #e0e7ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+        }
+        
+        .lista-marcadores {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .lista-marcadores li {
+            padding: 0.8rem 0 0.8rem 2.5rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        
+        .lista-marcadores li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+        
+        .citacao {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #764ba2;
+            text-align: center;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-top: 2px solid #f093fb;
+            border-bottom: 2px solid #f093fb;
+        }
+        
+        .secao-legado {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            margin: 3rem -2rem -4rem -2rem;
+            text-align: center;
+        }
+        
+        .secao-legado .titulo-principal {
+            color: white;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .secao-legado .paragrafo {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1.1rem;
+        }
+        
+        .texto-forte {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .conteiner {
+                padding: 2rem 1.5rem;
+            }
+            
+            .cartao-conceito {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="secao-inicial">
+        <h1>A Interpretação dos Sonhos</h1>
+        <p class="subtitulo">Uma Jornada pelo Inconsciente</p>
+        <p class="autor">Sigmund Freud • 1900</p>
+        <div class="indicador-rolagem">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="conteiner">
+        <div class="secao">
+            <h2 class="titulo-principal">📚 Estrutura e Contexto da Obra</h2>
+            <p class="paragrafo">Freud divide o livro em sete capítulos principais, começando com uma revisão crítica das teorias anteriores sobre sonhos e culminando em sua revolucionária teoria psicanalítica. A obra é baseada em centenas de sonhos analisados, incluindo muitos dos próprios sonhos de Freud (especialmente o famoso "sonho da injeção de Irma").</p>
+        </div>
+
+        <div class="secao">
+            <h2 class="titulo-principal">💡 Desenvolvimento Teórico Detalhado</h2>
+            
+            <h3 class="titulo-secundario">A Tese Central</h3>
+            <div class="caixa-destaque">
+                <p class="paragrafo">Freud rompe com a tradição que via os sonhos como fenômenos aleatórios ou místicos. Ele propõe que <span class="texto-forte">todo sonho é uma realização (disfarçada) de um desejo reprimido</span>. Os sonhos não são nonsense, mas produtos mentais com significado psicológico profundo.</p>
+            </div>
+
+            <h3 class="titulo-secundario">O Aparelho Psíquico e a Censura</h3>
+            <p class="paragrafo">Freud descreve um modelo topográfico da mente com três sistemas:</p>
+            <ul class="lista-marcadores">
+                <li><span class="texto-forte">Inconsciente:</span> repositório de desejos reprimidos, especialmente da infância</li>
+                <li><span class="texto-forte">Pré-consciente:</span> conteúdos acessíveis à consciência com esforço</li>
+                <li><span class="texto-forte">Consciente:</span> pensamentos e percepções atuais</li>
+            </ul>
+            <p class="paragrafo">Durante o sono, a "censura psíquica" relaxa (mas não desaparece), permitindo que desejos inconscientes tentem emergir. Porém, esses desejos são inaceitáveis para a consciência, então precisam ser disfarçados.</p>
+
+            <h3 class="titulo-secundario">Os Mecanismos do Trabalho do Sonho</h3>
+            
+            <h4 class="titulo-terciario">Condensação</h4>
+            <p class="paragrafo">Múltiplas ideias, pessoas ou situações se fundem em uma única imagem onírica. Uma pessoa no sonho pode representar características de várias pessoas reais.</p>
+
+            <h4 class="titulo-terciario">Deslocamento</h4>
+            <p class="paragrafo">A carga emocional é transferida de elementos importantes para secundários. O que parece trivial no sonho pode ser o mais significativo psicologicamente.</p>
+
+            <h4 class="titulo-terciario">Representação por símbolos</h4>
+            <p class="paragrafo">Pensamentos abstratos são transformados em imagens visuais concretas. Freud identifica símbolos que aparecem frequentemente (escadas, viagens, água), muitos com conotações sexuais.</p>
+
+            <h4 class="titulo-terciario">Elaboração secundária</h4>
+            <p class="paragrafo">Ao despertar, a mente tenta dar coerência narrativa ao sonho, preenchendo lacunas e criando uma história mais lógica.</p>
+
+            <h3 class="titulo-secundario">Tipos de Sonhos</h3>
+            <ul class="lista-marcadores">
+                <li><span class="texto-forte">Sonhos infantis:</span> mais diretos, mostram desejos de forma clara (criança sonha com doces que não pôde comer)</li>
+                <li><span class="texto-forte">Sonhos de angústia:</span> quando a censura falha e o conteúdo reprimido ameaça emergir</li>
+                <li><span class="texto-forte">Sonhos de punição:</span> realizações de desejos de autocrítica</li>
+                <li><span class="texto-forte">Sonhos típicos:</span> nudez em público, morte de pessoas queridas, exames, voar</li>
+            </ul>
+
+            <h3 class="titulo-secundario">O Método de Interpretação</h3>
+            <p class="paragrafo">Freud propõe a <span class="texto-forte">associação livre</span>: o paciente deve dizer tudo que vem à mente sobre cada elemento do sonho, sem censura. Essas associações levam ao conteúdo latente.</p>
+        </div>
+
+        <div class="citacao">
+            "Os sonhos são a via régia para o inconsciente"
+        </div>
+
+        <div class="secao">
+            <h2 class="titulo-principal">🔑 3 Conceitos Fundamentais</h2>
+
+            <div class="cartao-conceito">
+                <div class="numero-conceito">1</div>
+                <h3 class="titulo-secundario">CONTEÚDO MANIFESTO vs. CONTEÚDO LATENTE</h3>
+                
+                <h4 class="titulo-terciario">Definição:</h4>
+                <ul class="lista-marcadores">
+                    <li><span class="texto-forte">Conteúdo Manifesto</span> é o sonho como o experimentamos e lembramos - as imagens, narrativa, personagens e eventos que conseguimos descrever ao acordar</li>
+                    <li><span class="texto-forte">Conteúdo Latente</span> são os pensamentos oníricos verdadeiros, os desejos inconscientes e significados ocultos que o sonho realmente expressa</li>
+                </ul>
+
+                <h4 class="titulo-terciario">Explicação detalhada:</h4>
+                <p class="paragrafo">Esta é a distinção mais fundamental da teoria freudiana. Freud argumenta que o sonho tem duas camadas: a superfície (manifesto) e a profundidade (latente). O conteúdo manifesto é como uma fachada, uma versão distorcida e censurada do que realmente queremos dizer. O trabalho do analista é decifrar essa "linguagem cifrada" para revelar o conteúdo latente.</p>
+
+                <div class="caixa-exemplo">
+                    <h4 class="titulo-terciario">💭 Exemplo prático:</h4>
+                    <p class="paragrafo">Uma mulher sonha que perde um trem (conteúdo manifesto). Através da análise e associação livre, descobre-se que ela tem medo de "perder o trem" de ter filhos, pois está envelhecendo e solteira (conteúdo latente). O sonho expressa sua ansiedade sobre fertilidade e maternidade de forma disfarçada.</p>
+                </div>
+            </div>
+
+            <div class="cartao-conceito">
+                <div class="numero-conceito">2</div>
+                <h3 class="titulo-secundario">REALIZAÇÃO DE DESEJO (Wunscherfüllung)</h3>
+                
+                <h4 class="titulo-terciario">Definição:</h4>
+                <p class="paragrafo">Todo sonho representa a realização (satisfação) de um desejo, geralmente inconsciente e frequentemente originado na infância. Mesmo sonhos desagradáveis ou de angústia são, em última análise, tentativas de satisfazer desejos.</p>
+
+                <h4 class="titulo-terciario">Explicação detalhada:</h4>
+                <p class="paragrafo">Esta é a tese revolucionária de Freud. Ele propõe que sonhamos para manter o sono - se desejos inconscientes fossem completamente reprimidos, causariam tensão que nos acordaria. O sonho permite uma satisfação alucinatória desses desejos, protegendo o sono. Os desejos realizados são frequentemente:</p>
+                <ul class="lista-marcadores">
+                    <li>Desejos infantis reprimidos (sexuais ou agressivos)</li>
+                    <li>Desejos do dia anterior que se conectam com esses desejos infantis</li>
+                    <li>Desejos de autocrítica ou punição (no caso de pesadelos)</li>
+                </ul>
+
+                <div class="caixa-exemplo">
+                    <h4 class="titulo-terciario">💭 Exemplo prático:</h4>
+                    <p class="paragrafo">Um homem sonha que está nu em público e se sente envergonhado (aparentemente não é realização de desejo). Freud argumenta que este sonho realiza o desejo infantil de exibicionismo, mas de forma que a censura psíquica permite - adicionando vergonha e ansiedade. O desejo está lá, mas disfarçado de forma "aceitável". Ou pode realizar o desejo de ser punido por impulsos exibicionistas.</p>
+                </div>
+            </div>
+
+            <div class="cartao-conceito">
+                <div class="numero-conceito">3</div>
+                <h3 class="titulo-secundario">REGRESSÃO</h3>
+                
+                <h4 class="titulo-terciario">Definição:</h4>
+                <p class="paragrafo">Nos sonhos, o pensamento regride de sua forma normal (verbal, lógica, abstrata) para uma forma mais primitiva de expressão através de imagens visuais concretas e vívidas. Também há regressão temporal aos desejos e experiências da infância.</p>
+
+                <h4 class="titulo-terciario">Explicação detalhada:</h4>
+                <p class="paragrafo">Freud identifica três tipos de regressão no sonho:</p>
+                
+                <p class="paragrafo"><span class="texto-forte">a) Regressão tópica:</span> O processo mental se move "para trás" no aparelho psíquico, das áreas de pensamento abstrato para áreas de percepção sensorial. Por isso sonhamos em imagens, não em conceitos.</p>
+
+                <p class="paragrafo"><span class="texto-forte">b) Regressão temporal:</span> Os sonhos sempre levam de volta à infância, aos primeiros desejos e experiências. Eventos atuais no sonho são sempre conectados a memórias infantis.</p>
+
+                <p class="paragrafo"><span class="texto-forte">c) Regressão formal:</span> O pensamento abandona formas sofisticadas de expressão e retorna a modos primitivos de representação (como simbolismo, imagens ao invés de palavras).</p>
+
+                <div class="caixa-exemplo">
+                    <h4 class="titulo-terciario">💭 Exemplo prático:</h4>
+                    <p class="paragrafo">Um adulto tem um conflito no trabalho com seu chefe (situação atual). Sonha que está sendo perseguido por um gigante ameaçador em uma casa que reconhece como a casa de sua infância. A regressão transformou:</p>
+                    <ul class="lista-marcadores">
+                        <li>O pensamento abstrato "tenho conflito de autoridade" em imagem visual de perseguição (regressão tópica)</li>
+                        <li>O chefe atual no pai autoritário da infância (regressão temporal)</li>
+                        <li>O conflito adulto complexo em uma cena simples e dramática de medo infantil (regressão formal)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="secao-legado">
+            <h2 class="titulo-principal">🌟 Legado e Críticas</h2>
+            
+            <p class="paragrafo"><span class="texto-forte">Impacto:</span> A obra estabeleceu a psicanálise como disciplina e mudou permanentemente como entendemos a mente humana, influenciando psicologia, literatura, arte e cultura popular.</p>
+            
+            <p class="paragrafo"><span class="texto-forte">Críticas modernas:</span> Muitos aspectos são questionados cientificamente - a ênfase excessiva em simbolismo sexual, a falta de comprovação empírica rigorosa, e a universalização de interpretações. Porém, a ideia de que sonhos têm significado psicológico e refletem processos inconscientes permanece influente.</p>
+        </div>
+    </div>
+
+    <script>
+        // Animação suave ao rolar a página
+        const opcoesObservador = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observador = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.style.opacity = '1';
+                    entrada.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, opcoesObservador);
+
+        document.querySelectorAll('.secao, .cartao-conceito').forEach(elemento => {
+            elemento.style.opacity = '0';
+            elemento.style.transform = 'translateY(30px)';
+            elemento.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observador.observe(elemento);
+        });
+
+        // Scroll suave ao clicar no indicador de rolagem
+        document.querySelector('.indicador-rolagem').addEventListener('click', () => {
+            document.querySelector('.conteiner').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
