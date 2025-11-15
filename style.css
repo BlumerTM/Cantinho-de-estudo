@@ -1,0 +1,503 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* === MENU NAVEGAÇÃO === */
+.menu-navegacao {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 2rem;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.menu-conteudo {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-menu {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #a78bfa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.logo-menu:hover {
+    color: #c4b5fd;
+}
+
+.botao-voltar-inicio {
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.botao-voltar-inicio:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+}
+
+/* === TELA INICIAL === */
+.tela-inicial {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #312e81 50%, #4c1d95 100%);
+}
+
+.tela-inicial::before {
+    content: '';
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 50%;
+    animation: flutuar 6s ease-in-out infinite;
+    top: 10%;
+    left: 10%;
+}
+
+.tela-inicial::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 50%;
+    animation: flutuar 8s ease-in-out infinite;
+    bottom: 15%;
+    right: 15%;
+}
+
+@keyframes flutuar {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+.conteudo-inicial {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: surgirDeBaixo 1s ease-out;
+}
+
+.icone-livro {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    animation: balanco 3s ease-in-out infinite;
+}
+
+@keyframes balanco {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+.titulo-cantinho {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.subtitulo-cantinho {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+.grid-livros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    width: 100%;
+    padding: 2rem;
+}
+
+.cartao-livro {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-radius: 15px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cartao-livro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.cartao-livro:hover::before {
+    left: 100%;
+}
+
+.cartao-livro:hover {
+    transform: translateY(-10px);
+    border-color: #8b5cf6;
+    box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+}
+
+.icone-cartao {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.titulo-livro {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #a78bfa;
+    margin-bottom: 0.5rem;
+}
+
+.autor-livro {
+    color: #cbd5e1;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.ano-livro {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.badge-em-breve {
+    background: rgba(245, 158, 11, 0.2);
+    color: #fbbf24;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    display: inline-block;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+@keyframes surgirDeBaixo {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === CONTEÚDO DO RESUMO === */
+.conteudo-resumo {
+    display: none;
+    padding-top: 80px;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.conteudo-resumo.ativo {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    animation: aparecer 0.5s ease-out;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.secao-inicial {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e293b 0%, #312e81 50%, #4c1d95 100%);
+}
+
+.secao-inicial::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(139, 92, 246, 0.15);
+    border-radius: 50%;
+    animation: flutuar 6s ease-in-out infinite;
+    top: 10%;
+    left: 10%;
+}
+
+.secao-inicial::after {
+    content: '';
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(139, 92, 246, 0.1);
+    border-radius: 50%;
+    animation: flutuar 8s ease-in-out infinite;
+    bottom: 15%;
+    right: 15%;
+}
+
+.secao-inicial h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    color: white;
+    margin-bottom: 1rem;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: surgirDeBaixo 1s ease-out;
+    position: relative;
+    z-index: 1;
+}
+
+.secao-inicial .subtitulo {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 1rem;
+    animation: surgirDeBaixo 1s ease-out 0.2s backwards;
+    position: relative;
+    z-index: 1;
+}
+
+.secao-inicial .autor {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    animation: surgirDeBaixo 1s ease-out 0.4s backwards;
+    position: relative;
+    z-index: 1;
+}
+
+.conteiner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    background: #1e293b;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.secao {
+    margin-bottom: 3rem;
+    animation: surgirDeBaixo 0.8s ease-out;
+}
+
+.titulo-principal {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #a78bfa;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #8b5cf6;
+    position: relative;
+}
+
+.titulo-secundario {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
+    color: #c4b5fd;
+    margin: 2rem 0 1rem;
+}
+
+.titulo-terciario {
+    font-size: 1.2rem;
+    color: #a78bfa;
+    margin: 1.5rem 0 0.8rem;
+    font-weight: 600;
+}
+
+.paragrafo {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    color: #cbd5e1;
+}
+
+.cartao-conceito {
+    background: linear-gradient(135deg, #312e8120 0%, #4c1d9520 100%);
+    border-left: 5px solid #8b5cf6;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cartao-conceito:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+}
+
+.numero-conceito {
+    display: inline-block;
+    background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 15px rgba(139, 92, 246, 0.4);
+}
+
+.caixa-destaque {
+    background: #422006;
+    border-left: 4px solid #f59e0b;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.caixa-destaque .paragrafo {
+    color: #fde68a;
+}
+
+.caixa-exemplo {
+    background: #1e1b4b;
+    border-left: 4px solid #8b5cf6;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+}
+
+.caixa-exemplo .paragrafo {
+    color: #c4b5fd;
+}
+
+.lista-marcadores {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-marcadores li {
+    padding: 0.8rem 0 0.8rem 2.5rem;
+    position: relative;
+    font-size: 1.05rem;
+}
+
+.lista-marcadores li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: #a78bfa;
+    font-size: 1.3rem;
+}
+
+.citacao {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #c4b5fd;
+    text-align: center;
+    padding: 2rem;
+    margin: 2rem 0;
+    border-top: 2px solid #8b5cf6;
+    border-bottom: 2px solid #8b5cf6;
+    background: rgba(139, 92, 246, 0.1);
+}
+
+.secao-legado {
+    background: linear-gradient(135deg, #312e81 0%, #4c1d95 100%);
+    color: white;
+    padding: 3rem 2rem;
+    margin: 3rem -2rem -4rem -2rem;
+    text-align: center;
+}
+
+.secao-legado .titulo-principal {
+    color: #e9d5ff;
+    border-bottom: 3px solid rgba(233, 213, 255, 0.5);
+}
+
+.secao-legado .paragrafo {
+    color: #e9d5ff;
+    font-size: 1.1rem;
+}
+
+.texto-forte {
+    color: #a78bfa;
+    font-weight: 600;
+}
+
+.oculto {
+    display: none;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 768px) {
+    .conteiner {
+        padding: 2rem 1.5rem;
+    }
+    
+    .cartao-conceito {
+        padding: 1.5rem;
+    }
+
+    .menu-conteudo {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .grid-livros {
+        grid-template-columns: 1fr;
+    }
+}
